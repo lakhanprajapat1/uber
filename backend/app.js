@@ -1,13 +1,13 @@
-const require = require('dotenv');
-dotenv.config();
-const express = require('express');
-const cors =  require('cors');
-const app = express();
+// const express = require('express');
+// const cors =  require('cors');
+// const require = require('dotenv');
+// dotenv.config();
+// const app = express();
 
-app.use(cors());
+// app.use(cors());
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-});
+// app.get('/', (req, res) => {
+//     res.send('Hello World!')
+// });
 
-module.exports = app;
+// module.exports = app;
