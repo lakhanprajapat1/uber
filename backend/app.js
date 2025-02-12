@@ -1,13 +1,16 @@
-// const express = require('express');
-// const cors =  require('cors');
-// const require = require('dotenv');
-// dotenv.config();
-// const app = express();
+const express = require('express');
+const cors = require('cors');
+const dotenv = require('dotenv'); 
+dotenv.config();
+const app = express();
+const connectToDb= require('./db/db');
 
-// app.use(cors());
+connectToDb();
 
-// app.get('/', (req, res) => {
-//     res.send('Hello World!')
-// });
+app.use(cors());
 
-// module.exports = app;
+app.get('/', (req, res) => {
+    res.send('iam server created by lakhan prajapati');
+});
+
+module.exports = app;
