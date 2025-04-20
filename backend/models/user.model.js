@@ -30,16 +30,16 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-userSchema.pre('save', async function (next) {
-    if (this.isModified('password')) {
-        this.password = await bcrypt.hash(this.password, 10);
-    }
-    next();
-});
+// userSchema.pre('save', async function (next) {
+//     if (this.isModified('password')) {
+//         this.password = await bcrypt.hash(this.password, 10);
+//     }
+//     next();
+// });
 
 // Method to generate Auth Token
 userSchema.methods.generateAuthToken = function () {
-    const token = jwt.sign({ _id: this._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET);
     return token;
 }
 
