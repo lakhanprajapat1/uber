@@ -1,3 +1,4 @@
+import logo from '../assets/logo.white.jpg'
 import React, { useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -45,8 +46,6 @@ const Home = () => {
     }, [ user ])
 
     socket.on('ride-confirmed', ride => {
-
-
         setVehicleFound(false)
         setWaitingForDriver(true)
         setRide(ride)
@@ -199,7 +198,7 @@ const Home = () => {
 
     return (
         <div className='h-screen relative overflow-hidden'>
-            <img className='w-16 absolute left-5 top-5' src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png" alt="" />
+            <img className='w-16 absolute left-5 top-5' src={logo} alt="" />
             <div className='h-screen w-screen'>
                 {/* image for temporary use  */}
                 <LiveTracking />

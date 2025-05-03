@@ -30,16 +30,20 @@ function initializeSocket(server) {
         socket.on('update-location-captain', async (data) => {
             const { userId, location } = data;
 
-            if (!location || !location.ltd || !location.lng) {
+            if (!location || typeof location.lat !== 'number' || typeof location.lng !== 'number') {
                 return socket.emit('error', { message: 'Invalid location data' });
             }
 
-            await captainModel.findByIdAndUpdate(userId, {
-                location: {
-                    ltd: location.ltd,
-                    lng: location.lng
-                }
-            });
+            try {
+                await captainModel.findByIdAndUpdate(userId, {
+                    location: {
+                        lat: location.lat,
+                        lng: location.lng
+                    }
+                });
+            } catch (err) {
+                socket.emit('error', { message: 'Database update failed', error: err.message });
+            }
         });
 
         socket.on('disconnect', () => {

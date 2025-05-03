@@ -17,8 +17,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-
-
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
@@ -28,7 +26,15 @@ app.use('/captains', captainRoutes);
 app.use('/maps', mapsRoutes);
 app.use('/rides', rideRoutes);
 
+// 404 handler
+app.use((req, res, next) => {
+    res.status(404).json({ message: 'Not Found' });
+});
 
-
+// General error handler
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ message: 'Internal Server Error' });
+});
 
 module.exports = app;
